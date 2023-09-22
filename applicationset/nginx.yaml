@@ -4,7 +4,7 @@ metadata:
   name: nginx-project
   namespace: devteam-b
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 80
   selector:
