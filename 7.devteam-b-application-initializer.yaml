@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-initializer-devteam-b
+  namespace: argocd
+spec:
+  project: devteam-b
+  source:
+    repoURL: https://github.com/tppalani/devteam-b.git
+    targetRevision: main
+    path: applicationset
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devteam-b
+  # Sync policy
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - FailOnSharedResource=true
